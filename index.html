@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Shippori+Mincho+B1:wght@800&family=Yomogi&family=Yuji+Boku&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Meiryo UI','Yu Gothic UI',sans-serif;background:#f1f5f9;color:#1e293b;font-size:14px;line-height:1.5}
+body{font-family:'Meiryo UI','Yu Gothic UI',sans-serif;background:#f1f5f9;color:#1e293b;font-size:14px;line-height:1.5;overflow-x:hidden}
 input,select,textarea,button{font-family:inherit;font-size:14px}
 button{cursor:pointer}
 
@@ -159,6 +159,11 @@ tr:hover td{background:#fafbfc}
   .stock-summary{grid-template-columns:repeat(2,1fr)}
   .chart-grid{grid-template-columns:1fr}
   .form-row,.form-row-3{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .battle-grid{grid-template-columns:1fr!important}
+  .battle-summary-row{flex-direction:column!important}
+  .battle-divider{width:100%!important;height:1px!important}
 }
 </style>
 </head>
@@ -2884,7 +2889,7 @@ function renderBattle(external=false) {
     ${external ? '' : `
     <div style="margin:0 0 30px;background:rgba(255,255,255,.04);border:1.5px solid rgba(245,158,11,.45);border-radius:18px;padding:20px 26px">
       <!-- 上段：左＝個別株の式 ／ 縦線 ／ 右＝投資信託 -->
-      <div style="display:flex;align-items:stretch;gap:24px">
+      <div class="battle-summary-row" style="display:flex;align-items:stretch;gap:24px">
         <!-- 左：恩株済み軍 ＋ 恩株化を目指す軍団 ＝ 保有個別株合計額 -->
         <div style="flex:1;display:flex;justify-content:center;flex-wrap:wrap;gap:12px 20px;align-items:center">
           <div style="text-align:center">
@@ -2912,7 +2917,7 @@ function renderBattle(external=false) {
           </div>
         </div>
         <!-- 縦線 -->
-        <div style="width:1px;background:rgba(255,255,255,.18);flex-shrink:0"></div>
+        <div class="battle-divider" style="width:1px;background:rgba(255,255,255,.18);flex-shrink:0"></div>
         <!-- 右：投資信託 -->
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
           <div style="font-size:13px;color:#c4b5fd;font-weight:700;margin-bottom:4px">📦 投資信託</div>
@@ -2928,7 +2933,7 @@ function renderBattle(external=false) {
     </div>`}
 
     <!-- 左右カラム -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+    <div class="battle-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
 
       <!-- 左カラム：恩株済み軍団 → 投資信託（枠外・下） -->
       <div style="display:flex;flex-direction:column;gap:20px">
